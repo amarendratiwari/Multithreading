@@ -5,19 +5,12 @@ public class OddEvenPrintingUsingTwoThreads {
 	Object obj = new Object();
 	int i=1;
 
-	public OddEvenPrintingUsingTwoThreads( Object o) {
-		this.obj=o;
-	}
 	public static void main(String[] args) {
 
-		OddEvenPrintingUsingTwoThreads oddEven= new OddEvenPrintingUsingTwoThreads(new Object());
-		Thread t1 = new Thread(oddEven.new OddEven());
-		t1.setName("Odd");
+		OddEvenPrintingUsingTwoThreads oddEven= new OddEvenPrintingUsingTwoThreads();
+		new Thread(oddEven.new OddEven(),"Odd").start();
 
-		Thread t2 = new Thread(oddEven.new OddEven());
-		t2.setName("Even");
-		t1.start();
-		t2.start();
+		new Thread(oddEven.new OddEven(),"Even").start();
 
 	}
 
@@ -28,7 +21,7 @@ public class OddEvenPrintingUsingTwoThreads {
 			while(i<51) {
 				if(Thread.currentThread().getName()=="Even" && i%2==0) {
 					synchronized (obj) {
-						System.out.println("Thread name is "+Thread.currentThread().getName()+" number is "+i);
+						System.out.println("Thread "+Thread.currentThread().getName()+" is printing "+i);
 						i++;
 						obj.notify();
 					}
@@ -36,7 +29,7 @@ public class OddEvenPrintingUsingTwoThreads {
 				}
 				if(Thread.currentThread().getName()=="Odd" && i%2!=0) {
 					synchronized (obj) {
-						System.out.println("Thread name is "+Thread.currentThread().getName()+" number is "+i);
+						System.out.println("Thread "+Thread.currentThread().getName()+" is printing "+i);
 						i++;
 						try {
 							obj.wait();
