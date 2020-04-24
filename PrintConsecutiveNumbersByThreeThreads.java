@@ -25,7 +25,7 @@ public class PrintConsecutiveNumbersByThreeThreads {
 		}
 		@Override
 		public void run() {
-			while(integer.get()<50 ) {
+			while(integer.get() < 49 ) {
 				synchronized (obj) {
 					if(integer.get()%3 == threadNumber) {
 						System.out.println(Thread.currentThread().getName()+" printing "+ integer.getAndIncrement());;
