@@ -3,7 +3,7 @@ package multithreading;
 public class OddEvenPrintingUsingTwoThreads {
 
 	Object obj = new Object();
-	volatile int i=1;
+	int i=1;
 
 	public OddEvenPrintingUsingTwoThreads( Object o) {
 		this.obj=o;
@@ -25,7 +25,7 @@ public class OddEvenPrintingUsingTwoThreads {
 
 		@Override
 		public void run() {
-			while(i<21) {
+			while(i<51) {
 				if(Thread.currentThread().getName()=="Even" && i%2==0) {
 					synchronized (obj) {
 						System.out.println("Thread name is "+Thread.currentThread().getName()+" number is "+i);
